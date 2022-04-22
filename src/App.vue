@@ -6,7 +6,9 @@ export default {
 
 <template>
   <div>
-    <h1>DEMO</h1>
+    <h1>
+      <router-link to="/" tag="">DEMO</router-link>
+    </h1>
     <ul>
       <li><router-link to="/useQuery">useQuery</router-link></li>
     </ul>
@@ -15,4 +17,10 @@ export default {
 </template>
 
 <style>
+a {
+  color: black;
+}
+li {
+  list-style: none;
+}
 </style>

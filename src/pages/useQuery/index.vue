@@ -1,24 +1,14 @@
 <script lang="ts">
 import { ref } from "vue";
-import useQuery from "../../hooks/useQuery";
+import { getA } from "../../api/index";
 
-interface UserInfo {
-  name: string;
-}
+
 export default {
   name: "UseQuery",
   setup() {
     const state = ref(1);
     const state1 = ref(1);
-    const getData = async () => {
-      const res = await fetch("/a");
-      return res.json();
-    };
-    const { data, loading, error } = useQuery<UserInfo>({
-      queryKey: [state, state1],
-      queryFn: () => getData(),
-      delay: 1000,
-    });
+    const { data, loading, error } = getA(state.value);
     return { data, loading, error, state, state1 };
   },
 };
@@ -26,7 +16,7 @@ export default {
 
 <template>
   <div>
-    <p v-if="loading">{{ data.name }}</p>
+    <p v-if="!loading">{{ data.name }}</p>
     <p v-else>loading</p>
     <p>error:{{ error }}</p>
     <p>state:{{ state }}</p>
