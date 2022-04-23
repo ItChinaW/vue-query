@@ -3,13 +3,13 @@ import useQuery from "../hooks/useQuery";
 interface UserInfo {
     name: string;
 }
-export const getA = (state: number) => {
-    const getData = async () => {
-        const res = await fetch(`/a?id${state}`);
+export const getA = () => {
+    const getData = async (id: any) => {
+        const res = await fetch(`/a`);
         return res.json();
     };
     const res = useQuery<UserInfo>({
-        queryFn: () => getData(),
+        queryFn: (args) => getData(args?.id),
     });
     return res
 }
